@@ -2,6 +2,8 @@
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-typescript": "^5.0.0",
+    "gulp-uglify": "^3.0.1",
+    "readable-stream": "^3.1.1",
     "typescript": "^3.3.3333"
   }
 }

@@ -1,6 +1,6 @@
 {
     "files": [
-        "src/main.ts"
+        "src/webfont.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
