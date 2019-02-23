@@ -1,8 +1,7 @@
 var gulp = require("gulp");
-//var ts = require("gulp-typescript");
-//var uglify = require('gulp-uglify');
-//var pipeline = require('readable-stream').pipeline;
-//var tsProject = ts.createProject("tsconfig.json");
+var gutil = require("gulp-util");
+var webpack = require("webpack");
+var config = require("./webpack.config.js");
 var browserSync = require('browser-sync').create();
 
 // 静态服务器
@@ -12,29 +11,38 @@ gulp.task('browser-sync', function() {
             baseDir: "./dist/"
         }
     });
-    //gulp.watch("./src/**/*.*", gulp.series('build'));
+    gulp.watch("./src/**/*.*", gulp.series('webpack'));
     gulp.watch('./dist/**/*.js').on('change', browserSync.reload);
 });
-/*
-gulp.task('watch',function(){
-    return watch('./src/***.*', function () {
-        gulp.start('build');	//执行html任务
-        browserSync.reload(); //刷新浏览器
-    });
-});*/
-/*
-gulp.task('build', function () {
-    return tsProject.src()
-        .pipe(tsProject())
-        .js.pipe(gulp.dest('dist/js/'));
-});
 
-gulp.task('compress', function () {
-    return pipeline(
-          gulp.src('dist/*.js'),
-          uglify(),
-          gulp.dest('dist')
-    );
+gulp.task("webpack",function(){
+    return new Promise((resolve,reject) => {
+        webpack(config, function(err,stats) {
+            if (err) throw new gutil.PluginError("webpack",err);
+            var statColor = stats.compilation.warnings.length < 1 ? 'green' : 'yellow';
+            if (stats.compilation.errors.length > 0) {
+                stats.compilation.errors.forEach(function(error) {
+                    console.log(error)
+                    statColor = "red";
+                });
+            } else {
+                gutil.log(stats.toString({
+                    colors: gutil.colors.supportsColor,
+                    hash: false,
+                    timings: false,
+                    chucks: false,
+                    chuckMoudules: false,
+                    modules: false,
+                    children: false,
+                    version: false,
+                    cached: false,
+                    cachedAssets: false,
+                    source: false,
+                    errorDetails: false
+                }))
+            }
+            resolve();
+        })
+    })
 });
-*/
-gulp.task('default', gulp.series('browser-sync'));
+gulp.task('default', gulp.series('webpack','browser-sync'));

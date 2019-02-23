@@ -86,26 +86,65 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/ZipCodeValidator.ts":
-/*!*********************************!*\
-  !*** ./src/ZipCodeValidator.ts ***!
-  \*********************************/
+/***/ "./src/ajax.ts":
+/*!*********************!*\
+  !*** ./src/ajax.ts ***!
+  \*********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
     "use strict";
     exports.__esModule = true;
-    exports.numberRegexp = /^[0-9]+$/;
-    var ZipCodeValidator = /** @class */ (function () {
-        function ZipCodeValidator() {
+    function getAjax() {
+        var XmlHttp;
+        if (window.hasOwnProperty("ActiveXObject")) {
+            var arr = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.5.0",
+                "MSXML2.XMLHttp.4.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp", "Microsoft.XMLHttp"];
+            for (var i = 0; i < arr.length; i++) {
+                try {
+                    XmlHttp = new ActiveXObject(arr[i]);
+                    return XmlHttp;
+                }
+                catch (error) { }
+            }
         }
-        ZipCodeValidator.prototype.isAcceptable = function (s) {
-            return s.length === 5 && exports.numberRegexp.test(s);
+        else {
+            try {
+                XmlHttp = new XMLHttpRequest();
+                return XmlHttp;
+            }
+            catch (otherError) { }
+        }
+    }
+    var Ajax = /** @class */ (function () {
+        function Ajax() {
+        }
+        Ajax.prototype.Request = function (method, url, isAsync, data, callback, failcallback) {
+            var xobj = getAjax();
+            try {
+                xobj.open(method, url, isAsync);
+                if (method === "POST" || method === "post") {
+                    xobj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;');
+                    xobj.onreadystatechange = function () {
+                        if (xobj.readyState === 4) {
+                            if (xobj.status === 200 || xobj.status === 304) {
+                                callback(xobj.responseText);
+                            }
+                            else if (xobj.status === 404) {
+                                failcallback();
+                            }
+                        }
+                    };
+                    xobj.send(data);
+                }
+            }
+            catch (e) {
+            }
         };
-        return ZipCodeValidator;
+        return Ajax;
     }());
-    exports.ZipCodeValidator = ZipCodeValidator;
+    exports.Ajax = Ajax;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -119,15 +158,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./ZipCodeValidator */ "./src/ZipCodeValidator.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, ZipCodeValidator_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./ajax */ "./src/ajax.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, ajax_1) {
     "use strict";
     exports.__esModule = true;
-    var myValidator = new ZipCodeValidator_1.ZipCodeValidator();
-    function hello(compiler) {
-        console.log(myValidator.isAcceptable("123112"));
-        console.log("Hello from " + compiler);
-    }
-    hello("test");
+    var ajax = new ajax_1.Ajax();
+    ajax.Request("POST", "https://cdn.wf.youziku.com/fonts/100.html", true, "", function (data) {
+        console.log("ok", data);
+    }, function () {
+        console.log("fail");
+    });
+    console.log("Te");
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
