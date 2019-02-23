@@ -3,7 +3,14 @@
         "src/webfont.ts"
     ],
     "compilerOptions": {
-        "noImplicitAny": true,
-        "target": "es3"
-    }
+        "target": "es3",
+        "module": "commonjs",
+        "sourceMap": true
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
