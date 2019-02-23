@@ -4,8 +4,9 @@
     ],
     "compilerOptions": {
         "target": "es3",
-        "module": "commonjs",
-        "sourceMap": true
+        "module": "amd",
+        "sourceMap": true,
+        "noImplicitAny": true
     },
     "include": [
         "./src/**/*"

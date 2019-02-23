@@ -1,6 +1,7 @@
 module.exports = {
     mode: "development",
-    devtool: "inline-source-map",
+   // devtool: "inline-source-map",
+    devtool: "source-map",
     entry: "./src/webfont.ts",
     output: {
       filename: "webfont.js"

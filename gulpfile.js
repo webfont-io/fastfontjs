@@ -1,10 +1,9 @@
 var gulp = require("gulp");
-var ts = require("gulp-typescript");
-var uglify = require('gulp-uglify');
-var pipeline = require('readable-stream').pipeline;
-var tsProject = ts.createProject("tsconfig.json");
+//var ts = require("gulp-typescript");
+//var uglify = require('gulp-uglify');
+//var pipeline = require('readable-stream').pipeline;
+//var tsProject = ts.createProject("tsconfig.json");
 var browserSync = require('browser-sync').create();
-var watch = require('gulp-watch');
 
 // 静态服务器
 gulp.task('browser-sync', function() {
@@ -13,7 +12,7 @@ gulp.task('browser-sync', function() {
             baseDir: "./dist/"
         }
     });
-    gulp.watch("./src/**/*.*", gulp.series('build'));
+    //gulp.watch("./src/**/*.*", gulp.series('build'));
     gulp.watch('./dist/**/*.js').on('change', browserSync.reload);
 });
 /*
@@ -23,7 +22,7 @@ gulp.task('watch',function(){
         browserSync.reload(); //刷新浏览器
     });
 });*/
-
+/*
 gulp.task('build', function () {
     return tsProject.src()
         .pipe(tsProject())
@@ -37,5 +36,5 @@ gulp.task('compress', function () {
           gulp.dest('dist')
     );
 });
-
-gulp.task('default', gulp.series('build','browser-sync'));
+*/
+gulp.task('default', gulp.series('browser-sync'));
