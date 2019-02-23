@@ -162,14 +162,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     "use strict";
     exports.__esModule = true;
     var ajax = new ajax_1.Ajax();
-    ajax.Request("POST", "https://cdn.wf.youziku.com/fonts/100.html", true, "", function (data) {
-        console.log("ok", data);
-    }, function () {
-        console.log("fail");
-    });
-    console.log("Te");
+    alert("test ok");
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+//console.log("22");
 
 
 /***/ })
