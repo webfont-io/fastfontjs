@@ -376,9 +376,37 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             //根据一组key加载js文件
         };
         Webfont.prototype.draw = function () {
-            console.log(this);
+            console.log("draw");
+            var url = this._protocol + this.CDNServer + "0f397e2e65199ddf0032e6ade14e7f81.js";
+            //var script = document.createElement("script");
+            //script.type = "text/javascript";
+            //script.src = 
+            document.writeln("<script type='text/javascript' src='" + url + "'></script>");
+            //document.getElementsByTagName("head")[0].appendChild(script);
         };
         Webfont.prototype.include = function (accessKey, md5) {
+        };
+        Webfont.prototype.css = function (content) {
+            var d = document;
+            var headDom = d.getElementsByTagName("head")[0];
+            //create style append head
+            var t = d.createElement("style");
+            t.setAttribute("type", "text/css");
+            headDom.appendChild(t);
+            if (t.styleSheet) {
+                t.styleSheet.cssText = content;
+            }
+            else if (d.getBoxObjectFor) {
+                t.innerHTML = content;
+            }
+            else {
+                t.appendChild(d.createTextNode(content));
+            }
+        };
+        Webfont.prototype.applyFontface = function () {
+        };
+        Webfont.prototype.verify = function () {
+            console.log("verify");
         };
         return Webfont;
     }());
@@ -386,6 +414,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports["default"] = $webfont;
     window["$webfont"] = $webfont;
     window["$youziku"] = $webfont;
+    console.log("init");
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
