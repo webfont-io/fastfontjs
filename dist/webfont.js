@@ -373,6 +373,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             var md5 = new md5_1.MD5();
             //console.log("tag",md5.hex_md5("xx"),md5.b64_md5("xx"))
             //alert(md5.hex_md5("xx"));
+            //根据一组key加载js文件
         };
         Webfont.prototype.draw = function () {
         };

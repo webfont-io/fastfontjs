@@ -10,6 +10,7 @@ class Webfont {
         let md5 = new MD5();
         //console.log("tag",md5.hex_md5("xx"),md5.b64_md5("xx"))
         //alert(md5.hex_md5("xx"));
+        //根据一组key加载js文件
     }
     draw() {
 
