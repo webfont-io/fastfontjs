@@ -1,3 +1,5 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
     mode: "development",
    // devtool: "inline-source-map",
@@ -15,5 +17,24 @@ module.exports = {
         // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
         { test: /\.tsx?$/, loader: "ts-loader" }
       ]
+    },
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          minify(file, sourceMap) {
+            // https://github.com/mishoo/UglifyJS2#minify-options
+            const uglifyJsOptions = {
+              /* your `uglify-js` package options */
+            };
+            if (sourceMap) {
+              uglifyJsOptions.sourceMap = {
+                content: sourceMap,
+              };
+            }
+            return require('terser').minify(file, uglifyJsOptions);
+          },
+        }),
+      ],
     }
-  };
+};
+

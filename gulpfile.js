@@ -16,6 +16,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task("webpack",function(){
+    //config.plugins = config.optimization.minimizer;
     return new Promise((resolve,reject) => {
         webpack(config, function(err,stats) {
             if (err) throw new gutil.PluginError("webpack",err);
