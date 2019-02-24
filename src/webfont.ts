@@ -13,7 +13,7 @@ class Webfont {
         //根据一组key加载js文件
     }
     draw() {
-
+        console.log(this);
     }
     include(accessKey: string,md5: string) {
 
@@ -22,6 +22,7 @@ class Webfont {
 
 
 let $webfont = new Webfont();
+
 export default $webfont;
 declare var window: any;
 window["$webfont"] = $webfont;

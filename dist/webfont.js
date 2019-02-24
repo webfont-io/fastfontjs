@@ -376,6 +376,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             //根据一组key加载js文件
         };
         Webfont.prototype.draw = function () {
+            console.log(this);
         };
         Webfont.prototype.include = function (accessKey, md5) {
         };
