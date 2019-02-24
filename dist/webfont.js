@@ -363,7 +363,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.__esModule = true;
     var Webfont = /** @class */ (function () {
         function Webfont() {
-            this._protocol = "https";
+            this._protocol = "https:";
             this._version = version_1["default"];
             this.CDNServer = "//cdn.webfont.youziku.com/selectors/webUrl/";
             this.APIServer = "//api.youziku.com/webfont/fastjsPost";
@@ -376,7 +376,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             //根据一组key加载js文件
         };
         Webfont.prototype.draw = function () {
-            console.log("draw");
+            //console.log("draw");  
             var url = this._protocol + this.CDNServer + "0f397e2e65199ddf0032e6ade14e7f81.js";
             //var script = document.createElement("script");
             //script.type = "text/javascript";
@@ -406,7 +406,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         Webfont.prototype.applyFontface = function () {
         };
         Webfont.prototype.verify = function () {
-            console.log("verify");
+            //console.log("verify");  
         };
         return Webfont;
     }());
@@ -414,9 +414,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports["default"] = $webfont;
     window["$webfont"] = $webfont;
     window["$youziku"] = $webfont;
-    console.log("init");
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+//console.log("init");  
 
 
 /***/ })

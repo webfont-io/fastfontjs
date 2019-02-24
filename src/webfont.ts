@@ -1,7 +1,7 @@
 import {MD5} from "./plugin/md5"
 import version from "./version"
 class Webfont {
-    private _protocol: string = "https";
+    private _protocol: string = "https:";
     private _version: string = version;
     public CDNServer: string = "//cdn.webfont.youziku.com/selectors/webUrl/"
     public APIServer: string = "//api.youziku.com/webfont/fastjsPost"
@@ -13,7 +13,7 @@ class Webfont {
         //根据一组key加载js文件
     }
     draw() {
-        console.log("draw");  
+        //console.log("draw");  
         let url = this._protocol + this.CDNServer + "0f397e2e65199ddf0032e6ade14e7f81.js";
         //var script = document.createElement("script");
         //script.type = "text/javascript";
@@ -46,7 +46,7 @@ class Webfont {
     }
 
     verify() {
-      console.log("verify");  
+      //console.log("verify");  
     }
 }
 
@@ -57,4 +57,4 @@ export default $webfont;
 declare var window: any;
 window["$webfont"] = $webfont;
 window["$youziku"] = $webfont;
-console.log("init");  
+//console.log("init");  
