@@ -334,6 +334,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 /***/ }),
 
+/***/ "./src/version.ts":
+/*!************************!*\
+  !*** ./src/version.ts ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+    "use strict";
+    exports.__esModule = true;
+    exports["default"] = '1.0.1';
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ }),
+
 /***/ "./src/webfont.ts":
 /*!************************!*\
   !*** ./src/webfont.ts ***!
@@ -341,17 +358,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./plugin/md5 */ "./src/plugin/md5.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, md5_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./plugin/md5 */ "./src/plugin/md5.ts"), __webpack_require__(/*! ./version */ "./src/version.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, md5_1, version_1) {
     "use strict";
     exports.__esModule = true;
     var Webfont = /** @class */ (function () {
         function Webfont() {
             this.protocol = "https";
-            this.version = "1.0.1";
+            this.version = version_1["default"];
         }
         Webfont.prototype.load = function (tag, accessKey, option) {
+            //console.log(version);
             var md5 = new md5_1.MD5();
-            console.log("tag", md5.hex_md5("xx"), md5.b64_md5("xx"));
+            //console.log("tag",md5.hex_md5("xx"),md5.b64_md5("xx"))
+            //alert(md5.hex_md5("xx"));
         };
         Webfont.prototype.draw = function () {
         };

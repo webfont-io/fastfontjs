@@ -1,10 +1,13 @@
 import {MD5} from "./plugin/md5"
+import version from "./version"
 class Webfont {
     private protocol:string = "https";
-    private version:string = "1.0.1";
+    private version:string = version;
     load(tag: string, accessKey:string, option:any) {
+        //console.log(version);
         let md5 = new MD5();
-        console.log("tag",md5.hex_md5("xx"),md5.b64_md5("xx"))
+        //console.log("tag",md5.hex_md5("xx"),md5.b64_md5("xx"))
+        //alert(md5.hex_md5("xx"));
     }
     draw() {
 
