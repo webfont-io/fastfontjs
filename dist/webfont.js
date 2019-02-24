@@ -363,9 +363,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.__esModule = true;
     var Webfont = /** @class */ (function () {
         function Webfont() {
-            this.protocol = "https";
-            this.version = version_1["default"];
-            this.CdnServer = "//cdn.webfont.youziku.com/selectors/webUrl/";
+            this._protocol = "https";
+            this._version = version_1["default"];
+            this.CDNServer = "//cdn.webfont.youziku.com/selectors/webUrl/";
+            this.APIServer = "//api.youziku.com/webfont/fastjsPost";
         }
         Webfont.prototype.load = function (tag, accessKey, option) {
             //console.log(version);
@@ -374,6 +375,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             //alert(md5.hex_md5("xx"));
         };
         Webfont.prototype.draw = function () {
+        };
+        Webfont.prototype.include = function (accessKey, md5) {
         };
         return Webfont;
     }());
