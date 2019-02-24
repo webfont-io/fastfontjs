@@ -1,11 +1,4 @@
-/**
- *
- * @author 
- *
- */
-'use strict';
-   class MD5 {
-    
+export class MD5 {
         public constructor() {
     
         }
@@ -18,50 +11,16 @@
         */
         public hex_md5(s: any) { return this.rstr2hex(this.rstr_md5(this.str2rstr_utf8(s))); }//这个函数就行了，
         public b64_md5(s: any) { return this.rstr2b64(this.rstr_md5(this.str2rstr_utf8(s))); }
-        public any_md5(s: any,e: any) { return this.rstr2any(this.rstr_md5(this.str2rstr_utf8(s)),e); }
-        public hex_hmac_md5(k: any,d: any)
-        { return this.rstr2hex(this.rstr_hmac_md5(this.str2rstr_utf8(k),this.str2rstr_utf8(d))); }
-        private b64_hmac_md5(k: any,d: any)
-        { return this.rstr2b64(this.rstr_hmac_md5(this.str2rstr_utf8(k),this.str2rstr_utf8(d))); }
-        private any_hmac_md5(k: any,d: any,e: any)
-        { return this.rstr2any(this.rstr_hmac_md5(this.str2rstr_utf8(k),this.str2rstr_utf8(d)),e); }
-    
-        /*
-        * Perform a simple self-test to see if the VM is working
-        */
-        public md5_vm_test() {
-            return this.hex_md5("abc").toLowerCase() == "900150983cd24fb0d6963f7d28e17f72";
-        }
-    
+        
         /*
         * Calculate the MD5 of a raw string
         */
-       public rstr_md5(s: any) {  
-             
-            return this.binl2rstr(this.binl_md5(this.rstr2binl(s),s.length * 8));
+        private rstr_md5(s: any) {  
+           return this.binl2rstr(this.binl_md5(this.rstr2binl(s),s.length * 8));
         }
     
-        /*
-        * Calculate the HMAC-MD5, of a key and some data (raw strings)
-        */
-        public rstr_hmac_md5(key: any,data: any) {
-            var bkey = this.rstr2binl(key);
-            if(bkey.length > 16) bkey = this.binl_md5(bkey,key.length * 8);
-    
-            var ipad = Array(16),opad = Array(16);
-            for(var i = 0;i < 16;i++) {
-                ipad[i] = bkey[i] ^ 0x36363636;
-                opad[i] = bkey[i] ^ 0x5C5C5C5C;
-            }
-            
-            var hash = this.binl_md5(ipad.concat(this.rstr2binl(data)),512 + data.length * 8);
-            return this.binl2rstr(this.binl_md5(opad.concat(hash),512 + 128));
-        }
-    
-        /*
-        * Convert a raw string to a hex string
-        */
-        public rstr2hex(input: any) {
+        
+        private rstr2hex(input: any) {
             try { this.hexcase } catch(e) { this.hexcase = 0; }
             var hex_tab = this.hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
             var output = "";
@@ -77,7 +36,7 @@
         /*
         * Convert a raw string to a base-64 string
         */
-        public rstr2b64(input: any) {
+        private rstr2b64(input: any) {
             try { this.b64pad } catch(e) { this.b64pad = ''; }
             var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
             var output = "";
@@ -95,54 +54,10 @@
         }
     
         /*
-        * Convert a raw string to an arbitrary string encoding
-        */
-        public rstr2any(input: any,encoding: any) {
-            var divisor = encoding.length;
-            var i,j,q,x,quotient;
-    
-            /* Convert to an array of 16-bit big-endian values, forming the dividend */
-            var dividend = Array(Math.ceil(input.length / 2));
-            for(i = 0;i < dividend.length;i++) {
-                dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
-            }
-    
-            /*
-            * Repeatedly perform a long division. The binary array forms the dividend,
-            * the length of the encoding is the divisor. Once computed, the quotient
-            * forms the dividend for the next step. All remainders are stored for later
-            * use.
-            */
-            var full_length = Math.ceil(input.length * 8 /
-                (Math.log(encoding.length) / Math.log(2)));
-            var remainders = Array(full_length);
-            for(j = 0;j < full_length;j++) {
-                quotient = Array();
-                x = 0;
-                for(i = 0;i < dividend.length;i++) {
-                    x = (x << 16) + dividend[i];
-                    q = Math.floor(x / divisor);
-                    x -= q * divisor;
-                    if(quotient.length > 0 || q > 0)
-                        quotient[quotient.length] = q;
-                }
-                remainders[j] = x;
-                dividend = quotient;
-            }
-    
-            /* Convert the remainders to the output string */
-            var output = "";
-            for(i = remainders.length - 1;i >= 0;i--)
-                output += encoding.charAt(remainders[i]);
-    
-            return output;
-        }
-    
-        /*
         * Encode a string as utf-8.
         * For efficiency, this assumes the input is valid utf-16.
         */
-        public str2rstr_utf8(input: any) {
+        private str2rstr_utf8(input: any) {
             var output = "";
             var i = -1;
             var x,y;
@@ -174,31 +89,11 @@
             }
             return output;
         }
-    
-        /*
-        * Encode a string as utf-16
-        */
-        public str2rstr_utf16le(input: any) {
-            var output = "";
-            for(var i = 0;i < input.length;i++)
-                output += String.fromCharCode(input.charCodeAt(i) & 0xFF,
-                    (input.charCodeAt(i) >>> 8) & 0xFF);
-            return output;
-        }
-    
-        public str2rstr_utf16be(input: any) {
-            var output = "";
-            for(var i = 0;i < input.length;i++)
-                output += String.fromCharCode((input.charCodeAt(i) >>> 8) & 0xFF,
-                    input.charCodeAt(i) & 0xFF);
-            return output;
-        }
-    
         /*
         * Convert a raw string to an array of little-endian words
         * Characters >255 have their high-byte silently ignored.
         */
-        public rstr2binl(input: any) {
+        private rstr2binl(input: any) {
             var output = Array(input.length >> 2);
             for(var i = 0;i < output.length;i++)
                 output[i] = 0;
@@ -210,7 +105,7 @@
         /*
         * Convert an array of little-endian words to a string
         */
-        public binl2rstr(input: any) {
+        private binl2rstr(input: any) {
             var output = "";
             for(var i = 0;i < input.length * 32;i += 8)
                 output += String.fromCharCode((input[i >> 5] >>> (i % 32)) & 0xFF);
@@ -220,7 +115,7 @@
         /*
         * Calculate the MD5 of an array of little-endian words, and a bit length.
         */
-        public binl_md5(x: any,len: any) {
+        private binl_md5(x: any,len: any) {
             /* append padding */
             x[len >> 5] |= 0x80 << ((len) % 32);
             x[(((len + 64) >>> 9) << 4) + 14] = len;
@@ -315,19 +210,19 @@
         /*
         * These privates implement the four basic operations the algorithm uses.
         */
-        public md5_cmn(q: any,a: any,b: any,x: any,s: any,t: any) {
+        private md5_cmn(q: any,a: any,b: any,x: any,s: any,t: any) {
             return this.safe_add(this.bit_rol(this.safe_add(this.safe_add(a,q),this.safe_add(x,t)),s),b);
         }
-        public md5_ff(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
+        private md5_ff(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
             return this.md5_cmn((b & c) | ((~b) & d),a,b,x,s,t);
         }
-        public md5_gg(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
+        private md5_gg(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
             return this.md5_cmn((b & d) | (c & (~d)),a,b,x,s,t);
         }
-        public md5_hh(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
+        private md5_hh(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
             return this.md5_cmn(b ^ c ^ d,a,b,x,s,t);
         }
-        public md5_ii(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
+        private md5_ii(a: any,b: any,c: any,d: any,x: any,s: any,t: any) {
             return this.md5_cmn(c ^ (b | (~d)),a,b,x,s,t);
         }
     
@@ -335,7 +230,7 @@
         * Add integers, wrapping at 2^32. This uses 16-bit operations internally
         * to work around bugs in some JS interpreters.
         */
-        public safe_add(x: any,y: any) {
+        private safe_add(x: any,y: any) {
             var lsw = (x & 0xFFFF) + (y & 0xFFFF);
             var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
             return (msw << 16) | (lsw & 0xFFFF);
@@ -344,7 +239,7 @@
         /*
         * Bitwise rotate a 32-bit number to the left.
         */
-        public bit_rol(num: any,cnt: any) {
+        private bit_rol(num: any,cnt: any) {
             return (num << cnt) | (num >>> (32 - cnt));
         }
 }
