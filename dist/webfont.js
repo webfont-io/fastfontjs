@@ -365,6 +365,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         function Webfont() {
             this.protocol = "https";
             this.version = version_1["default"];
+            this.CdnServer = "//cdn.webfont.youziku.com/selectors/webUrl/";
         }
         Webfont.prototype.load = function (tag, accessKey, option) {
             //console.log(version);
