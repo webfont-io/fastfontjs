@@ -86,65 +86,25 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/ajax.ts":
-/*!*********************!*\
-  !*** ./src/ajax.ts ***!
-  \*********************/
+/***/ "./src/option.ts":
+/*!***********************!*\
+  !*** ./src/option.ts ***!
+  \***********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
     "use strict";
     exports.__esModule = true;
-    function getAjax() {
-        var XmlHttp;
-        if (window.hasOwnProperty("ActiveXObject")) {
-            var arr = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.5.0",
-                "MSXML2.XMLHttp.4.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp", "Microsoft.XMLHttp"];
-            for (var i = 0; i < arr.length; i++) {
-                try {
-                    XmlHttp = new ActiveXObject(arr[i]);
-                    return XmlHttp;
-                }
-                catch (error) { }
-            }
+    var Option = /** @class */ (function () {
+        function Option() {
+            this.protocol = "https";
+            this.version = "1.0.1";
+            this.X = "xxx";
         }
-        else {
-            try {
-                XmlHttp = new XMLHttpRequest();
-                return XmlHttp;
-            }
-            catch (otherError) { }
-        }
-    }
-    var Ajax = /** @class */ (function () {
-        function Ajax() {
-        }
-        Ajax.prototype.Request = function (method, url, isAsync, data, callback, failcallback) {
-            var xobj = getAjax();
-            try {
-                xobj.open(method, url, isAsync);
-                if (method === "POST" || method === "post") {
-                    xobj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;');
-                    xobj.onreadystatechange = function () {
-                        if (xobj.readyState === 4) {
-                            if (xobj.status === 200 || xobj.status === 304) {
-                                callback(xobj.responseText);
-                            }
-                            else if (xobj.status === 404) {
-                                failcallback();
-                            }
-                        }
-                    };
-                    xobj.send(data);
-                }
-            }
-            catch (e) {
-            }
-        };
-        return Ajax;
+        return Option;
     }());
-    exports.Ajax = Ajax;
+    exports.Option = Option;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -158,14 +118,40 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./ajax */ "./src/ajax.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, ajax_1) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//import {Ajax} from "./ajax";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./option */ "./src/option.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, option_1) {
     "use strict";
     exports.__esModule = true;
-    var ajax = new ajax_1.Ajax();
-    alert("test ok");
+    var Webfont = /** @class */ (function (_super) {
+        __extends(Webfont, _super);
+        function Webfont() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Webfont.prototype.load = function (tag, accessKey, option) {
+            this.X = "xx";
+        };
+        Webfont.prototype.draw = function () {
+        };
+        return Webfont;
+    }(option_1.Option));
+    var $webfont = new Webfont();
+    window["$webfont"] = $webfont;
+    window["$youziku"] = $webfont;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-//console.log("22");
 
 
 /***/ })
