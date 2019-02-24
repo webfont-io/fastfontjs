@@ -91,23 +91,29 @@
   !*** ./src/webfont.ts ***!
   \************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-var Webfont = /** @class */ (function () {
-    function Webfont() {
-        this.protocol = "https";
-        this.version = "1.0.1";
-    }
-    Webfont.prototype.load = function (tag, accessKey, option) {
-        console.log("tag");
-    };
-    Webfont.prototype.draw = function () {
-    };
-    return Webfont;
-}());
-var $webfont = new Webfont();
-window["$webfont"] = $webfont;
-window["$youziku"] = $webfont;
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
+    "use strict";
+    exports.__esModule = true;
+    var Webfont = /** @class */ (function () {
+        function Webfont() {
+            this.protocol = "https";
+            this.version = "1.0.1";
+        }
+        Webfont.prototype.load = function (tag, accessKey, option) {
+            console.log("tag");
+        };
+        Webfont.prototype.draw = function () {
+        };
+        return Webfont;
+    }());
+    var $webfont = new Webfont();
+    exports["default"] = $webfont;
+    window["$webfont"] = $webfont;
+    window["$youziku"] = $webfont;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 
 /***/ })
