@@ -363,7 +363,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     exports.__esModule = true;
     var Webfont = /** @class */ (function () {
         function Webfont() {
-            this._protocol = "https:";
+            this._protocol = "http:";
             this._version = version_1["default"];
             this.CDNServer = "//cdn.webfont.youziku.com/selectors/webUrl/";
             this.APIServer = "//api.youziku.com/webfont/fastjsPost";

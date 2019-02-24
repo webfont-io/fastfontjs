@@ -1,7 +1,7 @@
 import {MD5} from "./plugin/md5"
 import version from "./version"
 class Webfont {
-    private _protocol: string = "https:";
+    private _protocol: string = "http:";
     private _version: string = version;
     public CDNServer: string = "//cdn.webfont.youziku.com/selectors/webUrl/"
     public APIServer: string = "//api.youziku.com/webfont/fastjsPost"
