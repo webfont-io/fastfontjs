@@ -86,72 +86,28 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/option.ts":
-/*!***********************!*\
-  !*** ./src/option.ts ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports) {
-    "use strict";
-    exports.__esModule = true;
-    var Option = /** @class */ (function () {
-        function Option() {
-            this.protocol = "https";
-            this.version = "1.0.1";
-            this.X = "xxx";
-        }
-        return Option;
-    }());
-    exports.Option = Option;
-}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-
-/***/ }),
-
 /***/ "./src/webfont.ts":
 /*!************************!*\
   !*** ./src/webfont.ts ***!
   \************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//import {Ajax} from "./ajax";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
+var Webfont = /** @class */ (function () {
+    function Webfont() {
+        this.protocol = "https";
+        this.version = "1.0.1";
+    }
+    Webfont.prototype.load = function (tag, accessKey, option) {
+        console.log("tag");
     };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    Webfont.prototype.draw = function () {
     };
-})();
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! ./option */ "./src/option.ts")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, option_1) {
-    "use strict";
-    exports.__esModule = true;
-    var Webfont = /** @class */ (function (_super) {
-        __extends(Webfont, _super);
-        function Webfont() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Webfont.prototype.load = function (tag, accessKey, option) {
-            this.X = "xx";
-        };
-        Webfont.prototype.draw = function () {
-        };
-        return Webfont;
-    }(option_1.Option));
-    var $webfont = new Webfont();
-    window["$webfont"] = $webfont;
-    window["$youziku"] = $webfont;
-}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    return Webfont;
+}());
+var $webfont = new Webfont();
+window["$webfont"] = $webfont;
+window["$youziku"] = $webfont;
 
 
 /***/ })

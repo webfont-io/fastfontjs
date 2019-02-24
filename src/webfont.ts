@@ -1,16 +1,17 @@
-//import {Ajax} from "./ajax";
-
-import {Option} from "./option";
-class Webfont extends Option {
+class Webfont {
+    private protocol:string = "https"
+    private version:string = "1.0.1";
     load(tag: string, accessKey:string, option:any) {
-        this.X = "xx";
+        console.log("tag")
     }
     draw() {
 
     }
 }
 
+
 let $webfont = new Webfont();
+
 
 declare var window: any;
 window["$webfont"] = $webfont;
